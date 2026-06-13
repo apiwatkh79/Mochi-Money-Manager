@@ -3,174 +3,126 @@ JSON.parse(
 localStorage.getItem("transactions")
 ) || [];
 
+let chart = null;
+
 function showPage(pageId){
 
-  document
-  .querySelectorAll(".page")
-  .forEach(page=>{
-    page.classList.remove("active");
-  });
+document
+.querySelectorAll(".page")
+.forEach(page=>{
+page.classList.remove("active");
+});
 
-  document
-  .getElementById(pageId)
-  .classList.add("active");
+document
+.getElementById(pageId)
+.classList.add("active");
+
+if(pageId==="analytics"){
+renderChart();
+}
 
 }
 
 function addTransaction(){
 
-  const title =
-  document.getElementById("title").value;
+const title =
+document.getElementById("title").value;
 
-  const amount =
-  document.getElementById("amount").value;
+const amount =
+document.getElementById("amount").value;
 
-  const type =
-  document.getElementById("type").value;
+const type =
+document.getElementById("type").value;
 
-  const category =
-  document.getElementById("category").value;
+const category =
+document.getElementById("category").value;
 
-  if(!title || !amount){
-    return;
-  }
+if(!title || !amount){
+return;
+}
 
-  transactions.push({
+transactions.push({
 
-    title,
-    amount,
-    type,
-    category,
+title,
+amount,
+type,
+category,
+date:new Date().toLocaleDateString()
 
-    date:new Date()
-    .toLocaleDateString()
+});
 
-  });
+localStorage.setItem(
+"transactions",
+JSON.stringify(transactions)
+);
 
-  localStorage.setItem(
-    "transactions",
-    JSON.stringify(transactions)
-  );
+document.getElementById("title").value="";
+document.getElementById("amount").value="";
 
-  renderTransactions();
-  updateSummary();
+renderTransactions();
+updateSummary();
+renderChart();
 
 }
 
 function renderTransactions(){
 
-  const list =
-  document.getElementById(
-    "transactionList"
-  );
+const list =
+document.getElementById(
+"transactionList"
+);
 
-  if(!list) return;
+if(!list) return;
 
-  list.innerHTML = "";
+list.innerHTML="";
 
-  transactions.forEach((item,index)=>{
+transactions.forEach((item,index)=>{
 
-    list.innerHTML += `
-    <div class="card">
+list.innerHTML += `
+<div class="card">
 
-      <h3>${item.title}</h3>
+<h3>${item.title}</h3>
 
-      <p>${item.category}</p>
+<p>${item.category}</p>
 
-      <p>${item.date}</p>
+<p>${item.date}</p>
 
-      <p>${item.type}</p>
+<p>${item.type}</p>
 
-      <h2>฿${Number(item.amount).toLocaleString()}</h2>
+<h2>฿${Number(item.amount).toLocaleString()}</h2>
 
-      <button onclick="deleteTransaction(${index})">
-      ลบ
-      </button>
+<button onclick="deleteTransaction(${index})">
+ลบ
+</button>
 
-    </div>
+</div>
 
-    <br>
-    `;
+<br>
+`;
 
-  });
+});
 
 }
 
 function deleteTransaction(index){
 
-  transactions.splice(index,1);
+transactions.splice(index,1);
 
-  localStorage.setItem(
-    "transactions",
-    JSON.stringify(transactions)
-  );
+localStorage.setItem(
+"transactions",
+JSON.stringify(transactions)
+);
 
-  renderTransactions();
-  updateSummary();
+renderTransactions();
+updateSummary();
+renderChart();
 
 }
 
 function updateSummary(){
 
-  let income = 0;
-  let expense = 0;
-
-  transactions.forEach(item=>{
-
-    if(item.type === "income"){
-      income += Number(item.amount);
-    }else{
-      expense += Number(item.amount);
-    }
-
-  });
-
-  const balance =
-  income - expense;
-
-  const incomeEl =
-  document.getElementById("incomeTotal");
-
-  const expenseEl =
-  document.getElementById("expenseTotal");
-
-  const balanceEl =
-  document.getElementById("balance");
-
-  const savingEl =
-  document.getElementById("savingTotal");
-
-  if(incomeEl)
-    incomeEl.innerText =
-    "฿" + income.toLocaleString();
-
-  if(expenseEl)
-    expenseEl.innerText =
-    "฿" + expense.toLocaleString();
-
-  if(balanceEl)
-    balanceEl.innerText =
-    "฿" + balance.toLocaleString();
-
-  if(savingEl)
-    savingEl.innerText =
-    "฿" + balance.toLocaleString();
-
-}
-
-renderTransactions();
-updateSummary();
-function renderChart(){
-
-const canvas =
-document.getElementById(
-"financeChart"
-);
-
-if(!canvas) return;
-
-let income = 0;
-let expense = 0;
+let income=0;
+let expense=0;
 
 transactions.forEach(item=>{
 
@@ -182,28 +134,63 @@ expense += Number(item.amount);
 
 });
 
-new Chart(canvas,{
+const balance =
+income-expense;
+
+document.getElementById("incomeTotal").innerText =
+"฿"+income.toLocaleString();
+
+document.getElementById("expenseTotal").innerText =
+"฿"+expense.toLocaleString();
+
+document.getElementById("balance").innerText =
+"฿"+balance.toLocaleString();
+
+document.getElementById("savingTotal").innerText =
+"฿"+balance.toLocaleString();
+
+}
+
+function renderChart(){
+
+const canvas =
+document.getElementById(
+"financeChart"
+);
+
+if(!canvas) return;
+
+let income=0;
+let expense=0;
+
+transactions.forEach(item=>{
+
+if(item.type==="income"){
+income += Number(item.amount);
+}else{
+expense += Number(item.amount);
+}
+
+});
+
+if(chart){
+chart.destroy();
+}
+
+chart = new Chart(canvas,{
 
 type:"doughnut",
 
 data:{
-
-labels:[
-"Income",
-"Expense"
-],
-
+labels:["Income","Expense"],
 datasets:[{
-
-data:[
-income,
-expense
-]
-
+data:[income,expense]
 }]
-
 }
 
 });
 
 }
+
+renderTransactions();
+updateSummary();
