@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boss Mochi Finance Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h1>BOSS MOCHI</h1>
+
+    <button onclick="showPage('overview')">Overview</button>
+    <button onclick="showPage('income')">รายรับ</button>
+    <button onclick="showPage('expense')">รายจ่าย</button>
+    <button onclick="showPage('budget')">งบประมาณ</button>
+    <button onclick="showPage('settings')">ตั้งค่า</button>
+</div>
+
+<div class="content">
+
+    <section id="overview" class="page active">
+        <h2>Overview</h2>
+        <h3>เงินคงเหลือ ฿45,680</h3>
+    </section>
+
+    <section id="income" class="page">
+        <h2>รายรับ</h2>
+    </section>
+
+    <section id="expense" class="page">
+        <h2>รายจ่าย</h2>
+    </section>
+
+    <section id="budget" class="page">
+        <h2>งบประมาณ</h2>
+    </section>
+
+    <section id="settings" class="page">
+        <h2>ตั้งค่า</h2>
+    </section>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
