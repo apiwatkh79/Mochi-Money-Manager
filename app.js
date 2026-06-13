@@ -121,3 +121,6 @@ document.getElementById("savingTotal")
 "฿" + balance.toLocaleString();
 
 }
+
+renderTransactions();
+updateSummary();
