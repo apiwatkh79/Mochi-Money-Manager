@@ -1,23 +1,77 @@
+let transactions = [];
+
 function showPage(pageId){
 
-    // ซ่อนทุกหน้า
-    const pages =
-    document.querySelectorAll(".page");
+document
+.querySelectorAll(".page")
+.forEach(page=>{
+page.classList.remove("active");
+});
 
-    pages.forEach(page=>{
-        page.classList.remove("active");
-    });
+document
+.getElementById(pageId)
+.classList.add("active");
 
-    // แสดงหน้าที่เลือก
-    document
-    .getElementById(pageId)
-    .classList.add("active");
 }
 
-// โหลดหน้าแรก
-document.addEventListener(
-    "DOMContentLoaded",
-    ()=>{
-        showPage("overview");
-    }
-);
+function addTransaction(){
+
+const title =
+document
+.getElementById("title")
+.value;
+
+const amount =
+document
+.getElementById("amount")
+.value;
+
+const type =
+document
+.getElementById("type")
+.value;
+
+if(!title || !amount){
+return;
+}
+
+transactions.push({
+title,
+amount,
+type
+});
+
+renderTransactions();
+
+}
+
+function renderTransactions(){
+
+const list =
+document
+.getElementById("transactionList");
+
+list.innerHTML = "";
+
+transactions.forEach(item=>{
+
+list.innerHTML += `
+<div class="card">
+
+<h3>${item.title}</h3>
+
+<p>
+${item.type}
+</p>
+
+<h2>
+฿${item.amount}
+</h2>
+
+</div>
+<br>
+`;
+
+});
+
+}
