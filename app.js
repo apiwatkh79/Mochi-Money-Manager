@@ -61,6 +61,7 @@ document.getElementById("amount").value="";
 
 renderTransactions();
 updateSummary();
+updateBudget();
 renderChart();
 
 }
@@ -115,6 +116,7 @@ JSON.stringify(transactions)
 
 renderTransactions();
 updateSummary();
+updateBudget();
 renderChart();
 
 }
@@ -191,6 +193,65 @@ data:[income,expense]
 });
 
 }
+function updateBudget(){
 
+let food = 0;
+let travel = 0;
+let shopping = 0;
+
+transactions.forEach(item=>{
+
+if(item.type !== "expense") return;
+
+if(item.category==="อาหาร"){
+food += Number(item.amount);
+}
+
+if(item.category==="เดินทาง"){
+travel += Number(item.amount);
+}
+
+if(item.category==="ช้อปปิ้ง"){
+shopping += Number(item.amount);
+}
+
+});
+
+const foodLimit = 5000;
+const travelLimit = 3000;
+const shoppingLimit = 5000;
+
+const foodPercent =
+(food/foodLimit)*100;
+
+const travelPercent =
+(travel/travelLimit)*100;
+
+const shoppingPercent =
+(shopping/shoppingLimit)*100;
+
+const foodBar =
+document.getElementById("foodBar");
+
+const travelBar =
+document.getElementById("travelBar");
+
+const shoppingBar =
+document.getElementById("shoppingBar");
+
+if(foodBar)
+foodBar.style.width =
+Math.min(foodPercent,100)+"%";
+
+if(travelBar)
+travelBar.style.width =
+Math.min(travelPercent,100)+"%";
+
+if(shoppingBar)
+shoppingBar.style.width =
+Math.min(shoppingPercent,100)+"%";
+
+}
 renderTransactions();
 updateSummary();
+updateBudget();
