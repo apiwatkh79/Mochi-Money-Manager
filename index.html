@@ -62,10 +62,29 @@
 
         <div class="dashboard-grid">
 
-          <div class="card">
-            <h3>Balance</h3>
-           <div class="card">
-  <h3>Balance</h3>
+<div class="dashboard-grid">
+
+  <div class="card">
+    <h3>Balance</h3>
+    <h1 id="balance">฿0</h1>
+  </div>
+
+  <div class="card">
+    <h3>Income</h3>
+    <h1 id="incomeTotal">฿0</h1>
+  </div>
+
+  <div class="card">
+    <h3>Expense</h3>
+    <h1 id="expenseTotal">฿0</h1>
+  </div>
+
+  <div class="card">
+    <h3>Saving</h3>
+    <h1 id="savingTotal">฿0</h1>
+  </div>
+
+</div>
   <h1 id="balance">฿0</h1>
 </div>
 
@@ -102,7 +121,7 @@
 
         </div>
 
-     <section id="transactions" class="page">
+<section id="transactions" class="page">
 
 <h2>Transactions</h2>
 
@@ -122,15 +141,31 @@ placeholder="จำนวนเงิน">
 <br><br>
 
 <select id="type">
+  <option value="income">รายรับ</option>
+  <option value="expense">รายจ่าย</option>
+</select>
 
-<option value="income">
-รายรับ
-</option>
+<br><br>
 
-<option value="expense">
-รายจ่าย
-</option>
+<select id="category">
+  <option value="อาหาร">อาหาร</option>
+  <option value="เดินทาง">เดินทาง</option>
+  <option value="ช้อปปิ้ง">ช้อปปิ้ง</option>
+  <option value="บันเทิง">บันเทิง</option>
+  <option value="อื่นๆ">อื่นๆ</option>
+</select>
 
+<br><br>
+
+<button onclick="addTransaction()">
+เพิ่มรายการ
+</button>
+
+<br><br>
+
+<div id="transactionList"></div>
+
+</section>
 </select>
 
 <br><br>
