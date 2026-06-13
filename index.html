@@ -5,137 +5,112 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Boss Mochi Finance Dashboard</title>
 <link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
 <div class="layout">
 
-  <aside class="sidebar">
+<aside class="sidebar">
 
-    <div class="logo">
-      <h1>🐕 BOSS MOCHI</h1>
-      <p>Finance Dashboard</p>
-    </div>
+<div class="logo">
+<h1>🐕 BOSS MOCHI</h1>
+<p>Finance Dashboard</p>
+</div>
 
-    <button onclick="showPage('overview')">🏠 Overview</button>
-    <button onclick="showPage('transactions')">📋 รายการทั้งหมด</button>
-    <button onclick="showPage('income')">💰 รายรับ</button>
-    <button onclick="showPage('expense')">💸 รายจ่าย</button>
-    <button onclick="showPage('analytics')">📊 วิเคราะห์</button>
-    <button onclick="showPage('budget')">🎯 งบประมาณ</button>
-    <button onclick="showPage('goals')">⭐ เป้าหมาย</button>
-    <button onclick="showPage('calendar')">📅 ปฏิทิน</button>
-    <button onclick="showPage('categories')">📦 หมวดหมู่</button>
-    <button onclick="showPage('settings')">⚙️ ตั้งค่า</button>
+<button onclick="showPage('overview')">🏠 Overview</button>
+<button onclick="showPage('transactions')">📋 Transactions</button>
+<button onclick="showPage('analytics')">📊 Analytics</button>
 
-  </aside>
+</aside>
 
-  <main class="main">
+<main class="main">
 
-    <header class="topbar">
-      <div>
-        <h2>Welcome Back Boss Mochi 👋</h2>
-        <p>Let's manage your money.</p>
-      </div>
-    </header>
+<header class="topbar">
+<h2>Welcome Back Boss Mochi 👋</h2>
+<p>Track your money smarter.</p>
+</header>
 
-    <div class="content">
+<div class="content">
 
-      <!-- OVERVIEW -->
-      <section id="overview" class="page active">
+<section id="overview" class="page active">
 
-        <div class="hero">
-          <div>
-            <h1>Financial Overview</h1>
-            <p>Track your money in one place.</p>
-          </div>
+<div class="hero">
+<div>
+<h1>Financial Overview</h1>
+<p>Track your money in one place.</p>
+</div>
 
-          <div class="mochi">
-            🐕
-          </div>
-        </div>
+<div class="mochi">🐕</div>
+</div>
 
-        <div class="dashboard-grid">
+<div class="dashboard-grid">
 
-          <div class="card">
-            <h3>Balance</h3>
-            <h1 id="balance">฿0</h1>
-          </div>
+<div class="card">
+<h3>Balance</h3>
+<h1 id="balance">฿0</h1>
+</div>
 
-          <div class="card">
-            <h3>Income</h3>
-            <h1 id="incomeTotal">฿0</h1>
-          </div>
+<div class="card">
+<h3>Income</h3>
+<h1 id="incomeTotal">฿0</h1>
+</div>
 
-          <div class="card">
-            <h3>Expense</h3>
-            <h1 id="expenseTotal">฿0</h1>
-          </div>
+<div class="card">
+<h3>Expense</h3>
+<h1 id="expenseTotal">฿0</h1>
+</div>
 
-          <div class="card">
-            <h3>Saving</h3>
-            <h1 id="savingTotal">฿0</h1>
-          </div>
+<div class="card">
+<h3>Saving</h3>
+<h1 id="savingTotal">฿0</h1>
+</div>
 
-        </div>
+</div>
 
-      </section>
+</section>
 
-      <!-- TRANSACTIONS -->
-      <section id="transactions" class="page">
+<section id="transactions" class="page">
 
-        <h2>Transactions</h2>
+<h2>Transactions</h2>
 
-        <br>
+<br>
 
-        <input
-        id="title"
-        placeholder="รายการ">
+<input id="title" placeholder="รายการ">
 
-        <br><br>
+<br><br>
 
-        <input
-        id="amount"
-        type="number"
-        placeholder="จำนวนเงิน">
+<input id="amount" type="number" placeholder="จำนวนเงิน">
 
-        <br><br>
+<br><br>
 
-        <select id="type">
-          <option value="income">รายรับ</option>
-          <option value="expense">รายจ่าย</option>
-        </select>
+<select id="type">
+<option value="income">รายรับ</option>
+<option value="expense">รายจ่าย</option>
+</select>
 
-        <br><br>
+<br><br>
 
-        <select id="category">
-          <option value="อาหาร">อาหาร</option>
-          <option value="เดินทาง">เดินทาง</option>
-          <option value="ช้อปปิ้ง">ช้อปปิ้ง</option>
-          <option value="บันเทิง">บันเทิง</option>
-          <option value="อื่นๆ">อื่นๆ</option>
-        </select>
+<select id="category">
+<option>อาหาร</option>
+<option>เดินทาง</option>
+<option>ช้อปปิ้ง</option>
+<option>บันเทิง</option>
+<option>อื่นๆ</option>
+</select>
 
-        <br><br>
+<br><br>
 
-        <button onclick="addTransaction()">
-          เพิ่มรายการ
-        </button>
+<button onclick="addTransaction()">
+เพิ่มรายการ
+</button>
 
-        <br><br>
+<br><br>
 
-        <div id="transactionList"></div>
+<div id="transactionList"></div>
 
-      </section>
-
-      <section id="income" class="page">
-        <h2>Income</h2>
-      </section>
-
-      <section id="expense" class="page">
-        <h2>Expense</h2>
-      </section>
+</section>
 
 <section id="analytics" class="page">
 
@@ -144,40 +119,18 @@
 <br>
 
 <div class="card">
-
-<canvas id="financeChart">
-</canvas>
-
+<canvas id="financeChart"></canvas>
 </div>
 
 </section>
-      <section id="budget" class="page">
-        <h2>Budget</h2>
-      </section>
 
-      <section id="goals" class="page">
-        <h2>Goals</h2>
-      </section>
+</div>
 
-      <section id="calendar" class="page">
-        <h2>Calendar</h2>
-      </section>
-
-      <section id="categories" class="page">
-        <h2>Categories</h2>
-      </section>
-
-      <section id="settings" class="page">
-        <h2>Settings</h2>
-      </section>
-
-    </div>
-
-  </main>
+</main>
 
 </div>
 
 <script src="app.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </body>
 </html>
