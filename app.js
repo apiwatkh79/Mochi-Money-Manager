@@ -216,7 +216,56 @@ shopping += Number(item.amount);
 }
 
 });
+function updateGoal(){
 
+let income = 0;
+let expense = 0;
+
+transactions.forEach(item=>{
+
+if(item.type==="income"){
+income += Number(item.amount);
+}else{
+expense += Number(item.amount);
+}
+
+});
+
+const saving =
+income-expense;
+
+const goal = 100000;
+
+const percent =
+(saving/goal)*100;
+
+const bar =
+document.getElementById(
+"goalBar"
+);
+
+const text =
+document.getElementById(
+"goalProgress"
+);
+
+if(bar){
+
+bar.style.width =
+Math.min(percent,100)
++"%";
+
+}
+
+if(text){
+
+text.innerText =
+percent.toFixed(1)
++"%";
+
+}
+
+}
 const foodLimit = 5000;
 const travelLimit = 3000;
 const shoppingLimit = 5000;
