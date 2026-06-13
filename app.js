@@ -84,3 +84,38 @@ ${item.type}
 }
 
 renderTransactions();
+
+function updateSummary(){
+
+let income = 0;
+let expense = 0;
+
+transactions.forEach(item=>{
+
+  if(item.type === "income"){
+    income += Number(item.amount);
+  }else{
+    expense += Number(item.amount);
+  }
+
+});
+
+const balance = income - expense;
+
+document.getElementById("incomeTotal")
+.innerText =
+"฿" + income.toLocaleString();
+
+document.getElementById("expenseTotal")
+.innerText =
+"฿" + expense.toLocaleString();
+
+document.getElementById("balance")
+.innerText =
+"฿" + balance.toLocaleString();
+
+document.getElementById("savingTotal")
+.innerText =
+"฿" + balance.toLocaleString();
+
+}
