@@ -1,4 +1,7 @@
-let transactions = [];
+let transactions =
+JSON.parse(
+localStorage.getItem("transactions")
+) || [];
 
 function showPage(pageId){
 
@@ -41,8 +44,12 @@ amount,
 type
 });
 
-renderTransactions();
+localStorage.setItem(
+"transactions",
+JSON.stringify(transactions)
+);
 
+renderTransactions();
 }
 
 function renderTransactions(){
