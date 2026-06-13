@@ -84,12 +84,49 @@
 
         </div>
 
-      </section>
+     <section id="transactions" class="page">
 
-      <!-- Pages -->
-      <section id="transactions" class="page">
-        <h2>Transactions</h2>
-      </section>
+<h2>Transactions</h2>
+
+<br>
+
+<input
+id="title"
+placeholder="รายการ">
+
+<br><br>
+
+<input
+id="amount"
+type="number"
+placeholder="จำนวนเงิน">
+
+<br><br>
+
+<select id="type">
+
+<option value="income">
+รายรับ
+</option>
+
+<option value="expense">
+รายจ่าย
+</option>
+
+</select>
+
+<br><br>
+
+<button onclick="addTransaction()">
+เพิ่มรายการ
+</button>
+
+<br><br>
+
+<div id="transactionList">
+</div>
+
+</section>
 
       <section id="income" class="page">
         <h2>Income</h2>
