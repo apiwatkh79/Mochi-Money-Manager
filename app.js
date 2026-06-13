@@ -62,6 +62,7 @@ document.getElementById("amount").value="";
 renderTransactions();
 updateSummary();
 updateBudget();
+updateGoal();
 renderChart();
 
 }
@@ -117,6 +118,7 @@ JSON.stringify(transactions)
 renderTransactions();
 updateSummary();
 updateBudget();
+updateGoal();
 renderChart();
 
 }
@@ -193,6 +195,7 @@ data:[income,expense]
 });
 
 }
+
 function updateBudget(){
 
 let food = 0;
@@ -216,6 +219,36 @@ shopping += Number(item.amount);
 }
 
 });
+
+const foodLimit = 5000;
+const travelLimit = 3000;
+const shoppingLimit = 5000;
+
+const foodPercent = (food/foodLimit)*100;
+const travelPercent = (travel/travelLimit)*100;
+const shoppingPercent = (shopping/shoppingLimit)*100;
+
+const foodBar = document.getElementById("foodBar");
+const travelBar = document.getElementById("travelBar");
+const shoppingBar = document.getElementById("shoppingBar");
+
+if(foodBar){
+foodBar.style.width =
+Math.min(foodPercent,100)+"%";
+}
+
+if(travelBar){
+travelBar.style.width =
+Math.min(travelPercent,100)+"%";
+}
+
+if(shoppingBar){
+shoppingBar.style.width =
+Math.min(shoppingPercent,100)+"%";
+}
+
+}
+
 function updateGoal(){
 
 let income = 0;
@@ -231,76 +264,31 @@ expense += Number(item.amount);
 
 });
 
-const saving =
-income-expense;
-
+const saving = income - expense;
 const goal = 100000;
 
-const percent =
-(saving/goal)*100;
+const percent = (saving/goal)*100;
 
 const bar =
-document.getElementById(
-"goalBar"
-);
+document.getElementById("goalBar");
 
 const text =
-document.getElementById(
-"goalProgress"
-);
+document.getElementById("goalProgress");
 
 if(bar){
-
 bar.style.width =
-Math.min(percent,100)
-+"%";
-
+Math.min(percent,100)+"%";
 }
 
 if(text){
-
 text.innerText =
-percent.toFixed(1)
-+"%";
-
+percent.toFixed(1)+"%";
 }
 
 }
-const foodLimit = 5000;
-const travelLimit = 3000;
-const shoppingLimit = 5000;
 
-const foodPercent =
-(food/foodLimit)*100;
-
-const travelPercent =
-(travel/travelLimit)*100;
-
-const shoppingPercent =
-(shopping/shoppingLimit)*100;
-
-const foodBar =
-document.getElementById("foodBar");
-
-const travelBar =
-document.getElementById("travelBar");
-
-const shoppingBar =
-document.getElementById("shoppingBar");
-
-if(foodBar)
-foodBar.style.width =
-Math.min(foodPercent,100)+"%";
-
-if(travelBar)
-travelBar.style.width =
-Math.min(travelPercent,100)+"%";
-
-if(shoppingBar)
-shoppingBar.style.width =
-Math.min(shoppingPercent,100)+"%";
-
-}
 renderTransactions();
 updateSummary();
 updateBudget();
+updateGoal();
+renderChart();
