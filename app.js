@@ -39,17 +39,21 @@ return;
 }
 
 transactions.push({
+
 title,
 amount,
-type
-});
+type,
 
+date:new Date()
+.toLocaleDateString()
+
+});
 localStorage.setItem(
 "transactions",
 JSON.stringify(transactions)
 );
 
-renderTransactions();
+renderTransactions(<p>${item.date}</p>);
 updateSummary();
 }
 
@@ -61,20 +65,20 @@ document
 
 list.innerHTML = "";
 
-transactions.forEach(item=>{
+transactions.forEach((item,index)=>{
 
 list.innerHTML += `
 <div class="card">
 
 <h3>${item.title}</h3>
 
-<p>
-${item.type}
-</p>
+<p>${item.type}</p>
 
-<h2>
-฿${item.amount}
-</h2>
+<h2>฿${item.amount}</h2>
+
+<button onclick="deleteTransaction(${index})">
+ลบ
+</button>
 
 </div>
 <br>
@@ -124,3 +128,17 @@ document.getElementById("savingTotal")
 
 renderTransactions();
 updateSummary();
+
+function deleteTransaction(index){
+
+transactions.splice(index,1);
+
+localStorage.setItem(
+"transactions",
+JSON.stringify(transactions)
+);
+
+renderTransactions();
+updateSummary();
+
+}
