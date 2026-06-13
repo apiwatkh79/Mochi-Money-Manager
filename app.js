@@ -59,6 +59,115 @@ JSON.stringify(transactions)
 document.getElementById("title").value="";
 document.getElementById("amount").value="";
 
+let currentDate = new Date();
+
+function renderCalendar(){
+
+const grid =
+document.getElementById(
+"calendarGrid"
+);
+
+const monthYear =
+document.getElementById(
+"monthYear"
+);
+
+if(!grid || !monthYear) return;
+
+grid.innerHTML = "";
+
+const year =
+currentDate.getFullYear();
+
+const month =
+currentDate.getMonth();
+
+monthYear.innerText =
+new Date(
+year,
+month
+).toLocaleDateString(
+"th-TH",
+{
+month:"long",
+year:"numeric"
+}
+);
+
+const firstDay =
+new Date(
+year,
+month,
+1
+).getDay();
+
+const daysInMonth =
+new Date(
+year,
+month+1,
+0
+).getDate();
+
+for(let i=0;i<firstDay;i++){
+
+const empty =
+document.createElement("div");
+
+grid.appendChild(empty);
+
+}
+
+for(let day=1;day<=daysInMonth;day++){
+
+const cell =
+document.createElement("div");
+
+cell.classList.add("day");
+
+const dateString =
+new Date(
+year,
+month,
+day
+).toLocaleDateString();
+
+const hasTransaction =
+transactions.some(
+item=>item.date===dateString
+);
+
+if(hasTransaction){
+
+cell.classList.add(
+"has-transaction"
+);
+
+}
+
+cell.innerHTML = `
+<div class="day-number">
+${day}
+</div>
+`;
+
+grid.appendChild(cell);
+
+}
+
+}
+
+function changeMonth(direction){
+
+currentDate.setMonth(
+currentDate.getMonth()
++direction
+);
+
+renderCalendar();
+
+}
+  
 renderTransactions();
 updateSummary();
 updateBudget();
@@ -122,6 +231,7 @@ updateBudget();
 updateGoal();
 updateStats();
 renderChart();
+renderCalendar();
 
 }
 
@@ -360,4 +470,4 @@ updateSummary();
 updateBudget();
 updateGoal();
 updateStats();
-renderChart();
+renderCalendar();
