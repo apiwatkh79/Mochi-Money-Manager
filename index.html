@@ -9,63 +9,123 @@
 
 <body>
 
-<div class="sidebar">
-    <h1>BOSS MOCHI</h1>
+<div class="layout">
 
-    <button onclick="showPage('overview')">Overview</button>
-    <button onclick="showPage('income')">รายรับ</button>
-    <button onclick="showPage('expense')">รายจ่าย</button>
-    <button onclick="showPage('budget')">งบประมาณ</button>
-    <button onclick="showPage('settings')">ตั้งค่า</button>
-</div>
+  <aside class="sidebar">
 
-<div class="content">
-
-<section id="overview" class="page active">
-
-<h2>🏠 Overview</h2>
-
-<div class="dashboard-grid">
-
-    <div class="card">
-        <h3>เงินคงเหลือ</h3>
-        <h1>฿45,680</h1>
+    <div class="logo">
+      <h1>🐕 BOSS MOCHI</h1>
+      <p>Finance Dashboard</p>
     </div>
 
-    <div class="card">
-        <h3>รายรับ</h3>
-        <h1>฿65,890</h1>
+    <button onclick="showPage('overview')">🏠 Overview</button>
+    <button onclick="showPage('transactions')">📋 รายการทั้งหมด</button>
+    <button onclick="showPage('income')">💰 รายรับ</button>
+    <button onclick="showPage('expense')">💸 รายจ่าย</button>
+    <button onclick="showPage('analytics')">📊 วิเคราะห์</button>
+    <button onclick="showPage('budget')">🎯 งบประมาณ</button>
+    <button onclick="showPage('goals')">⭐ เป้าหมาย</button>
+    <button onclick="showPage('calendar')">📅 ปฏิทิน</button>
+    <button onclick="showPage('categories')">📦 หมวดหมู่</button>
+    <button onclick="showPage('settings')">⚙️ ตั้งค่า</button>
+
+  </aside>
+
+  <main class="main">
+
+    <header class="topbar">
+
+      <div>
+        <h2>Welcome Back Boss Mochi 👋</h2>
+        <p>Let's manage your money.</p>
+      </div>
+
+    </header>
+
+    <div class="content">
+
+      <!-- Overview -->
+      <section id="overview" class="page active">
+
+        <div class="hero">
+
+          <div>
+            <h1>Financial Overview</h1>
+            <p>Track your money in one place.</p>
+          </div>
+
+          <div class="mochi">
+            🐕
+          </div>
+
+        </div>
+
+        <div class="dashboard-grid">
+
+          <div class="card">
+            <h3>Balance</h3>
+            <h1>฿45,680</h1>
+          </div>
+
+          <div class="card">
+            <h3>Income</h3>
+            <h1>฿65,890</h1>
+          </div>
+
+          <div class="card">
+            <h3>Expense</h3>
+            <h1>฿20,210</h1>
+          </div>
+
+          <div class="card">
+            <h3>Saving</h3>
+            <h1>฿25,680</h1>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- Pages -->
+      <section id="transactions" class="page">
+        <h2>Transactions</h2>
+      </section>
+
+      <section id="income" class="page">
+        <h2>Income</h2>
+      </section>
+
+      <section id="expense" class="page">
+        <h2>Expense</h2>
+      </section>
+
+      <section id="analytics" class="page">
+        <h2>Analytics</h2>
+      </section>
+
+      <section id="budget" class="page">
+        <h2>Budget</h2>
+      </section>
+
+      <section id="goals" class="page">
+        <h2>Goals</h2>
+      </section>
+
+      <section id="calendar" class="page">
+        <h2>Calendar</h2>
+      </section>
+
+      <section id="categories" class="page">
+        <h2>Categories</h2>
+      </section>
+
+      <section id="settings" class="page">
+        <h2>Settings</h2>
+      </section>
+
     </div>
 
-    <div class="card">
-        <h3>รายจ่าย</h3>
-        <h1>฿20,210</h1>
-    </div>
-
-    <div class="card">
-        <h3>เงินออม</h3>
-        <h1>฿25,680</h1>
-    </div>
-
-</div>
-
-</section>
-
-    <section id="income" class="page">
-        <h2>รายรับ</h2>
-    </section>
-
-    <section id="expense" class="page">
-        <h2>รายจ่าย</h2>
-    </section>
-
-    <section id="budget" class="page">
-        <h2>งบประมาณ</h2>
-    </section>
-
-    <section id="settings" class="page">
-        <h2>ตั้งค่า</h2>
-    </section>
+  </main>
 
 </div>
 
