@@ -1,82 +1,122 @@
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-    font-family:Arial,sans-serif;
-    background:#1b1f3a;
-    color:white;
-    display:flex;
-    min-height:100vh;
+font-family:Arial,sans-serif;
+background:#1a1f4d;
+color:white;
+height:100vh;
+overflow:hidden;
+}
+
+.layout{
+display:flex;
+height:100vh;
 }
 
 .sidebar{
-    width:250px;
-    background:#10142b;
-    padding:20px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
+width:260px;
+background:#121633;
+padding:25px;
+display:flex;
+flex-direction:column;
+gap:12px;
 }
 
-.sidebar h1{
-    color:#ffd54f;
-    margin-bottom:20px;
+.logo{
+margin-bottom:25px;
+}
+
+.logo h1{
+color:#ffd166;
 }
 
 .sidebar button{
-    border:none;
-    padding:12px;
-    border-radius:10px;
-    background:#6c4cff;
-    color:white;
-    cursor:pointer;
-    transition:0.2s;
+border:none;
+padding:14px;
+border-radius:12px;
+background:#5f5fff;
+color:white;
+cursor:pointer;
+transition:.3s;
 }
 
 .sidebar button:hover{
-    background:#8468ff;
+transform:translateX(5px);
+}
+
+.main{
+flex:1;
+display:flex;
+flex-direction:column;
+}
+
+.topbar{
+height:90px;
+background:#242b6d;
+padding:20px 30px;
+display:flex;
+align-items:center;
 }
 
 .content{
-    flex:1;
-    padding:30px;
+padding:25px;
+overflow:auto;
 }
 
 .page{
-    display:none;
+display:none;
 }
 
 .page.active{
-    display:block;
+display:block;
 }
 
-h2{
-    margin-bottom:20px;
+.hero{
+background:#3c45a5;
+border-radius:25px;
+padding:30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
 }
 
-.card{
-    background:white;
-    color:#222;
-    border-radius:16px;
-    padding:20px;
-    margin-top:15px;
-    width:300px;
+.mochi{
+font-size:80px;
+animation:float 3s infinite;
 }
+
+@keyframes float{
+
+0%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
+
 .dashboard-grid{
-    display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
 }
 
 .card{
-    background:white;
-    color:#222;
-    border-radius:20px;
-    padding:20px;
-    box-shadow:
-    0 10px 20px rgba(0,0,0,.2);
+background:white;
+color:#222;
+padding:25px;
+border-radius:20px;
+box-shadow:0 8px 20px rgba(0,0,0,.25);
 }
