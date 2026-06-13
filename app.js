@@ -50,6 +50,7 @@ JSON.stringify(transactions)
 );
 
 renderTransactions();
+updateSummary();
 }
 
 function renderTransactions(){
@@ -84,6 +85,7 @@ ${item.type}
 }
 
 renderTransactions();
+updateSummary();
 
 function updateSummary(){
 
