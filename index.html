@@ -24,7 +24,8 @@
 <button onclick="showPage('analytics')">📊 Analytics</button>
 <button onclick="showPage('goals')">🎯 Goals</button>
 <button onclick="showPage('budget')">💰 Budget</button>
-
+<button onclick="showPage('calendar')">📅 Calendar</button>
+  
 </aside>
 
 <main class="main">
@@ -190,6 +191,36 @@
 
 <div class="progress">
 <div id="shoppingBar" class="fill"></div>
+</div>
+
+</div>
+
+</section>
+
+<section id="calendar" class="page">
+
+<h2>📅 Calendar</h2>
+
+<br>
+
+<div class="card">
+
+<div class="calendar-header">
+
+<button onclick="changeMonth(-1)">
+◀
+</button>
+
+<h3 id="monthYear"></h3>
+
+<button onclick="changeMonth(1)">
+▶
+</button>
+
+</div>
+
+<div id="calendarGrid"
+class="calendar-grid">
 </div>
 
 </div>
