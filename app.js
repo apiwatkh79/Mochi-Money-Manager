@@ -63,6 +63,7 @@ renderTransactions();
 updateSummary();
 updateBudget();
 updateGoal();
+updateStats();
 renderChart();
 
 }
@@ -119,6 +120,7 @@ renderTransactions();
 updateSummary();
 updateBudget();
 updateGoal();
+updateStats();
 renderChart();
 
 }
@@ -286,9 +288,76 @@ percent.toFixed(1)+"%";
 }
 
 }
+function updateStats(){
 
+let incomeCount = 0;
+let expenseCount = 0;
+
+let incomeTotal = 0;
+let expenseTotal = 0;
+
+transactions.forEach(item=>{
+
+if(item.type==="income"){
+
+incomeCount++;
+incomeTotal += Number(item.amount);
+
+}else{
+
+expenseCount++;
+expenseTotal += Number(item.amount);
+
+}
+
+});
+
+const total =
+transactions.length;
+
+const totalEl =
+document.getElementById(
+"totalTransactions"
+);
+
+const avgIncomeEl =
+document.getElementById(
+"avgIncome"
+);
+
+const avgExpenseEl =
+document.getElementById(
+"avgExpense"
+);
+
+if(totalEl){
+totalEl.innerText = total;
+}
+
+if(avgIncomeEl){
+
+avgIncomeEl.innerText =
+"฿" +
+(incomeCount
+? incomeTotal/incomeCount
+:0).toLocaleString();
+
+}
+
+if(avgExpenseEl){
+
+avgExpenseEl.innerText =
+"฿" +
+(expenseCount
+? expenseTotal/expenseCount
+:0).toLocaleString();
+
+}
+
+}
 renderTransactions();
 updateSummary();
 updateBudget();
 updateGoal();
+updateStats();
 renderChart();
