@@ -82,3 +82,5 @@ ${item.type}
 });
 
 }
+
+renderTransactions();
